@@ -1,11 +1,11 @@
-package exception;
+package ru.netology.authorization;
 
+import ru.netology.authorization.exception.InvalidCredentials;
+import ru.netology.authorization.exception.UnauthorizedUser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.netology.authorization.exception.InvalidCredentials;
-import ru.netology.authorization.exception.UnauthorizedUser;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UnauthorizedUser.class)
     public ResponseEntity<String> handleUnauthorizedUser(UnauthorizedUser ex) {
-        System.out.println("Unauthorized access attempt: " + ex.getMessage());
+        System.out.println("Unauthorized access: " + ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
     }
 }
